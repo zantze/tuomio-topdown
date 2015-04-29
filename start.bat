@@ -1,1 +1,1 @@
-"..\love\love.exe" "." --console
+"..\love\love.exe" "./videogame" --console
