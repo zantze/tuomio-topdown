@@ -20,6 +20,28 @@ function menu:load()
 	menu.scale = 2;
 end
 
+function menu.button(x, y, text, w, h)
+	--love.graphics.translate(x + w, y + h)
+    --love.graphics.rotate(0 + math.sin(love.timer.getTime() * 2) / 32)
+    --love.graphics.translate(x - w, y - h)
+    love.graphics.push()
+    for i = 0, 30 do
+        color = {}
+        color.r = 0
+        color.g = 148
+        color.b = 255
+        love.graphics.setColor(color.r, (color.g * (i / 30)) * math.sin(love.timer.getTime() * 5), color.b, (i / 30) * 255)
+        if(i == 30) then
+        	love.graphics.setColor(255, 255, 255)
+        end
+        scale = 1 + (math.sin(love.timer.getTime() * 2) / 200)
+        love.graphics.translate(0, math.sin(love.timer.getTime() * 2) / 5)
+        love.graphics.rotate(-0.002 * (math.sin(love.timer.getTime() * 2) / 2))
+        love.graphics.rectangle('fill', x - (w / 2), y, w, h);
+    end
+    love.graphics.pop()
+end
+
 function menu:draw()
 	width = love.graphics.getWidth()
 	height = love.graphics.getHeight()
@@ -27,10 +49,7 @@ function menu:draw()
 	love.graphics.setColor(255, 255, 255, 128)
 	love.graphics.draw(menu.girls[menu.back], width / 2 , height / 2, 0, 1, 1, menu.girls[menu.back]:getWidth() / 2, menu.girls[menu.back]:getHeight() /2)
 
-	love.graphics.setColor(255, 255, 255, 255)
-    love.graphics.draw(menu.start, width / 2 , height / 2, 0, menu.scale, menu.scale, menu.start:getWidth() / 2, menu.start:getHeight() /2)
-    love.graphics.draw(menu.options, width / 2 , (height / 2) + 42, 0, menu.scale, menu.scale, menu.options:getWidth() / 2, menu.options:getHeight() /2)
-    love.graphics.draw(menu.exit, width / 2 , (height / 2) + 84, 0, menu.scale, menu.scale, menu.exit:getWidth() / 2, menu.exit:getHeight() /2)
+	menu.button(width / 2, (height / 2) - 50, 'Play Game', 100, 20)
 
     love.graphics.translate(width / 2, (height / 2) - 150)
     love.graphics.rotate(0 + math.sin(love.timer.getTime() * 2) / 32)
