@@ -1,6 +1,8 @@
 # tuomio-topdown
 this is for my upcoming title 
 
+NOTE: Anime images are not licenced by us, please respect their copyright!
+
 Authors
 -------
 - @munkkeli :joy: :joy: :joy:

@@ -3,7 +3,7 @@ require "scene"
 intro = {}
 
 function intro:load()
-	intro.logo = love.graphics.newImage("tuomio.png")
+	intro.logo = love.graphics.newImage('png/tuomio.png')
 end
 
 local logoscale = 0.5
