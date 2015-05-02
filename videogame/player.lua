@@ -1,10 +1,12 @@
 player = {}
 
+require 'mapper'
+
 vector = require 'vector'
 
 function player:load()
 	player.texture = love.graphics.newImage("png/player.png")
-	player.map = love.graphics.newImage("png/map.png")
+	player.map = mapper.load('maps/kerava.map')
 end
 
 player.pos = vector(128, 128)
@@ -12,7 +14,7 @@ player.rot = 0
 
 function player:draw()
 	love.graphics.setColor(255, 255, 255, 255)
-	love.graphics.draw(player.map, 0,0,0,1,1,1,1)
+	map:draw()
 	love.graphics.draw(player.texture, player.pos.x, player.pos.y, math.rad(player.rot), 1, 1, player.texture:getWidth() / 2, player.texture:getHeight() / 2)
 end
 
