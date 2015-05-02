@@ -5,6 +5,7 @@ require 'mapper'
 vector = require 'vector'
 
 function player:load()
+	love.graphics.setDefaultFilter('nearest', 'nearest')
 	player.texture = love.graphics.newImage("png/player.png")
 	player.map = mapper.load('maps/kerava.map')
 end

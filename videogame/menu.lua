@@ -5,9 +5,6 @@ menu = {}
 function menu:load()
 	love.graphics.setDefaultFilter('nearest', 'nearest')
 	font_title = love.graphics.newFont('fonts/kenpixel.ttf', 22)
-	menu.start = love.graphics.newImage('png/start.png')
-	menu.options = love.graphics.newImage('png/options.png')
-	menu.exit = love.graphics.newImage('png/exit.png')
 
 	menu.girls = {}
 	menu.girls[0] = love.graphics.newImage('anime/0.jpg')
