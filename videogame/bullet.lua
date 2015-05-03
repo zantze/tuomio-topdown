@@ -5,7 +5,6 @@ vector = require 'vector'
 bullets = {}
 
 function bullet:load()
-    sprite = love.graphics.newImage("png/bullet.png"
     end
 
 function bullet:draw()
