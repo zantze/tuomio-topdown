@@ -1,41 +1,56 @@
 player = {}
 
 require 'mapper'
+require 'entities'
 require 'bullet'
 
 vector = require 'vector'
 
 function player:load()
 	love.graphics.setDefaultFilter('nearest', 'nearest')
+
+	entities:create('barrel', 10, 16, love.graphics.newImage('png/berrel.png'), 10, 'dynamic')
+	entities:create('player', 18, 18, love.graphics.newImage('png/player.png'), 100, 'dynamic')
+
 	player.texture = love.graphics.newImage("png/player.png")
 	player.map = mapper.load('maps/kerava.map')
-    bullet:load()
+  bullet:load()
+
+	player.player = entities:spawn('player', 100, 100, 0, 1)
+
+	entities:spawn('barrel', 200, 200, 0, 2)
+	--entities:spawn('barrel', 300, 200, 0, 2)
+	--entities:spawn('barrel', 250, 300, 0, 2)
+	--entities:spawn('barrel', 400, 250, 0, 2)
 end
 
-player.pos = vector(128, 128)
-player.rot = 0
-
-function player:draw(i)
-        
-    love.graphics.setColor(255, 255, 255, 255)
+function player:draw()
+  love.graphics.setColor(255, 255, 255, 255)
 	map:draw()
-    bullet:draw()  
-	love.graphics.draw(player.texture, player.pos.x, player.pos.y, math.rad(player.rot), 1, 1, player.texture:getWidth() / 2, player.texture:getHeight() / 2)
-      
+	entities:draw()
+  bullet:draw()
 end
 
 function player:update(dt)
-    bullet:update(dt)
-end
+  bullet:update(dt)
 
-function player:translate(x, y)
-	player.pos = player.pos + vector(x, y):rotated(math.rad(player.rot))
-end
+	entities:update(dt)
 
-function player:rotate(angle)
-	player.rot = math.deg(math.rad(player.rot + angle))
-end
+	speed = 100
+  rotspeed = 500
+	if love.keyboard.isDown('w') then
+		player.player.move(0, -speed * dt)
+	elseif love.keyboard.isDown('s') then
+		player.player.move(0, speed * dt)
+	end
 
-function player:shoot()
-    bullet:spawn()
+	if love.keyboard.isDown('d') then
+		player.player.rotate(rotspeed * dt)
+	elseif love.keyboard.isDown('a') then
+		player.player.rotate(-rotspeed * dt)
+	end
+
+	if love.keyboard.isDown('x') then
+		bullet:spawn(player.player.pos.x, player.player.pos.y, player.player.rot)
+	end
 end

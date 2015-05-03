@@ -20,10 +20,10 @@ function bullet:update(dt)
   end
 end
 
-function bullet:spawn()
-  table.insert(bullets,{
-    pos = vector (player.pos.x, player.pos.y),
-    rot = player.rot,
-    speed = 200
+function bullet:spawn(x, y, r)
+  table.insert(bullets, {
+    pos = vector (x, y),
+    rot = r,
+    speed = 400
   })
 end
