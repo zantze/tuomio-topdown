@@ -19,9 +19,9 @@ function player:load()
 	player.player = entities:spawn('player', 100, 100, 0, 1)
 
 	entities:spawn('barrel', 200, 200, 0, 2)
-	--entities:spawn('barrel', 300, 200, 0, 2)
-	--entities:spawn('barrel', 250, 300, 0, 2)
-	--entities:spawn('barrel', 400, 250, 0, 2)
+	entities:spawn('barrel', 300, 200, 0, 2)
+	entities:spawn('barrel', 250, 300, 0, 2)
+	entities:spawn('barrel', 400, 250, 0, 2)
 end
 
 function player:draw()
