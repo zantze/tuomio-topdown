@@ -9,6 +9,7 @@ function love.draw()
   game:draw()
   love.graphics.setColor(255, 0, 255, 255)
   love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 10)
+    sprite = love.graphics.newImage("png/bullet.png")
 end
 
 function love.update(dt)
@@ -24,6 +25,11 @@ function love.update(dt)
   elseif love.keyboard.isDown('a') then
       player:rotate(-rotspeed * dt)
   end
+    
+  if love.keyboard.isDown('x') then
+      player:shoot()
+    end
+    
   
   game:update(dt)
 end
