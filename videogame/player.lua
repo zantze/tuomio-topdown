@@ -6,6 +6,8 @@ require 'bullet'
 
 vector = require 'vector'
 
+shootTimer = 100
+
 function player:load()
 	love.graphics.setDefaultFilter('nearest', 'nearest')
 
@@ -14,7 +16,8 @@ function player:load()
 
 	player.texture = love.graphics.newImage("png/player.png")
 	player.map = mapper.load('maps/kerava.map')
-  bullet:load()
+  
+    bullet:load()
 
 	player.player = entities:spawn('player', 100, 100, 0, 1)
 
@@ -33,7 +36,7 @@ end
 
 function player:update(dt)
   bullet:update(dt)
-
+shootTimer = shootTimer + 1
 	entities:update(dt)
 
 	speed = 100
@@ -51,6 +54,9 @@ function player:update(dt)
 	end
 
 	if love.keyboard.isDown('x') then
-		bullet:spawn(player.player.pos.x, player.player.pos.y, player.player.rot)
+        if shootTimer > 10 then
+		    bullet:spawn(player.player.pos.x, player.player.pos.y, player.player.rot)
+            shootTimer = 0
+            end
 	end
 end

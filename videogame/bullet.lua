@@ -5,25 +5,23 @@ vector = require 'vector'
 bullets = {}
 
 function bullet:load()
-
+    entities:create('bullet', 4, 4, love.graphics.newImage('png/bullet.png'), 100, 'dynamic')    
 end
 
 function bullet:draw()
-  for i, o in ipairs(bullets) do
-    love.graphics.draw(sprite, o.pos.x, o.pos.y, 0)
-  end
 end
 
 function bullet:update(dt)
   for i, o in ipairs(bullets) do
-    o.pos = o.pos + vector(0, -speed * dt):rotated(math.rad(o.rot))
+    
+    o.bullet.move(0,-10)
   end
 end
 
 function bullet:spawn(x, y, r)
-  table.insert(bullets, {
-    pos = vector (x, y),
-    rot = r,
-    speed = 400
-  })
+        for i = 1, 1 ,1 do
+            table.insert(bullets, {
+                bullet = entities:spawn('bullet', x, y, r, 1)
+            })
+        end
 end
