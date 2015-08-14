@@ -5,6 +5,7 @@ menu = {}
 function menu:load()
 	love.graphics.setDefaultFilter('nearest', 'nearest')
 	font_title = love.graphics.newFont('fonts/kenpixel.ttf', 22)
+    font_text = love.graphics.newFont('fonts/kenpixel.ttf', 12)
 
 	menu.girls = {}
 	menu.girls[0] = love.graphics.newImage('anime/0.jpg')
@@ -36,6 +37,11 @@ function menu.button(x, y, text, w, h)
         love.graphics.rotate(-0.002 * (math.sin(love.timer.getTime() * 2) / 2))
         love.graphics.rectangle('fill', x - (w / 2), y, w, h);
     end
+
+    love.graphics.setColor(color.r, color.g, color.b)
+    love.graphics.setFont(font_text)
+    love.graphics.print(text, x - (font_text:getWidth(text) / 2), y + 2)
+
     love.graphics.pop()
 end
 
@@ -47,6 +53,8 @@ function menu:draw()
 	love.graphics.draw(menu.girls[menu.back], width / 2 , height / 2, 0, 1, 1, menu.girls[menu.back]:getWidth() / 2, menu.girls[menu.back]:getHeight() /2)
 
 	menu.button(width / 2, (height / 2) - 50, 'Play Game', 100, 20)
+
+    menu.button(width / 2, (height / 2) - 10, 'Intro', 100, 20)
 
     love.graphics.translate(width / 2, (height / 2) - 150)
     love.graphics.rotate(0 + math.sin(love.timer.getTime() * 2) / 32)
@@ -67,7 +75,7 @@ function menu:draw()
         love.graphics.rotate(-0.025 * (math.sin(love.timer.getTime() * 2) / 2))
         love.graphics.translate(-width / 2, -height / 2)
         love.graphics.setFont(font_title)
-        text = 'tuom.io'
+        text = 'mango hunter'
         love.graphics.print(text, (width / 2) - (font_title:getWidth(text) / 2), (height / 2) - (font_title:getHeight(text) / 2))
     end
     love.graphics.pop()
